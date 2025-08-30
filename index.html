@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sameera Murtaza - Digital Content Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 30%, #ff6b9d 70%, #c471ed 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+            min-height: 600px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 30%, #ff5f6d 70%, #ffc371 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path d="M0,0 C150,100 350,0 500,50 C650,100 850,0 1000,50 L1000,0 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6b9d);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: messageSlide 0.5s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .user-message {
+            text-align: right;
+        }
+
+        .user-message .message-content {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6b9d);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 20px 20px 5px 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .assistant-message .message-content {
+            display: inline-block;
+            background: #f8f9fa;
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 20px 20px 20px 5px;
+            max-width: 80%;
+            word-wrap: break-word;
+            border: 1px solid #e9ecef;
+        }
+
+        .suggested-questions {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .suggested-questions h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .question-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .question-chip {
+            background: white;
+            color: #495057;
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            border: 2px solid #dee2e6;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .question-chip:hover {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6b9d);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.3);
+        }
+
+        .projects-showcase {
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .projects-showcase h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .project-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-btn {
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 15px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .project-btn:hover {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 126, 95, 0.3);
+            border-color: transparent;
+        }
+
+        .project-icon {
+            font-size: 2em;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .project-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .project-info p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .project-btn:hover .project-info p {
+            opacity: 0.9;
+        }
+
+        .input-area {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 25px;
+            font-size: 1em;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-area input:focus {
+            border-color: #ff7e5f;
+            box-shadow: 0 0 0 3px rgba(255, 126, 95, 0.2);
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6b9d);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 15px 20px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .typing-dots {
+            display: inline-block;
+        }
+
+        .typing-dots::after {
+            content: '.';
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { color: rgba(0,0,0,0); text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); }
+            40% { color: #6c757d; text-shadow: .25em 0 0 rgba(0,0,0,0), .5em 0 0 rgba(0,0,0,0); }
+            60% { text-shadow: .25em 0 0 #6c757d, .5em 0 0 rgba(0,0,0,0); }
+            80%, 100% { text-shadow: .25em 0 0 #6c757d, .5em 0 0 #6c757d; }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlide 0.3s ease-out;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6b9d);
+            color: white;
+            padding: 25px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+        }
+
+        .modal-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .project-detail {
+            margin-bottom: 20px;
+        }
+
+        .project-detail h4 {
+            color: #ff7e5f;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .project-detail p, .project-detail ul {
+            color: #495057;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .project-detail ul {
+            padding-left: 20px;
+        }
+
+        .project-stats {
+            background: linear-gradient(135deg, rgba(255, 126, 95, 0.1), rgba(254, 180, 123, 0.1));
+            border-left: 4px solid #ff7e5f;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .project-stats strong {
+            color: #ff7e5f;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                height: 90vh;
+                margin: 20px 10px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .question-chips {
+                flex-direction: column;
+            }
+
+            .question-chip {
+                text-align: center;
+            }
+
+            .user-message .message-content,
+            .assistant-message .message-content {
+                max-width: 90%;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+            
+            .project-buttons {
+                gap: 10px;
+            }
+            
+            .project-btn {
+                padding: 12px;
+            }
+            
+            .project-icon {
+                font-size: 1.5em;
+                min-width: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="profile-img">SM</div>
+                <h1>Meet Sameera's Digital Storytelling Companion</h1>
+                <p>✨ Where creativity meets strategy — discover how Sameera transforms ideas into impactful digital experiences!</p>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message assistant-message">
+                    <div class="message-content">
+                        🌅 Welcome to Sameera's creative universe! I'm her AI companion, here to share the story of a digital communications expert who turns complex ideas into compelling narratives. What spark of curiosity can I ignite about her journey?
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggested-questions">
+                <h3>🔥 Ignite your curiosity about:</h3>
+                <div class="question-chips">
+                    <div class="question-chip" onclick="askQuestion('What makes Sameera a good fit for CIBC?')">What makes her a good fit for CIBC?</div>
+                    <div class="question-chip" onclick="askQuestion('Tell me about her TD Bank achievements and impact')">Her TD Bank achievements</div>
+                    <div class="question-chip" onclick="askQuestion('What are her technical skills and certifications?')">Technical skills & certifications</div>
+                    <div class="question-chip" onclick="askQuestion('Why is she interested in financial services?')">Why financial services?</div>
+                    <div class="question-chip" onclick="askQuestion('Tell me about her web migration project at TMU')">Her TMU web migration project</div>
+                </div>
+            </div>
+
+            <div class="projects-showcase">
+                <h3>🌟 Featured Projects Portfolio</h3>
+                <div class="project-buttons">
+                    <div class="project-btn" onclick="openProjectModal('linkedin')">
+                        <div class="project-icon">📈</div>
+                        <div class="project-info">
+                            <h4>LinkedIn Case Study Campaign</h4>
+                            <p>Award-winning thought leadership series</p>
+                        </div>
+                    </div>
+                    <div class="project-btn" onclick="openProjectModal('familytime')">
+                        <div class="project-icon">🚀</div>
+                        <div class="project-info">
+                            <h4>FamilyTime SaaS Launch</h4>
+                            <p>Complete product launch & marketing</p>
+                        </div>
+                    </div>
+                    <div class="project-btn" onclick="openProjectModal('webmigration')">
+                        <div class="project-icon">🌐</div>
+                        <div class="project-info">
+                            <h4>Faculty Web Migration</h4>
+                            <p>12+ websites modernization project</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <span class="typing-dots">Thinking</span>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Let's explore Sameera's digital world together..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">→</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modals -->
+    <div id="linkedinModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('linkedinModal')">&times;</span>
+                <h2>📈 LinkedIn Case Study Campaign</h2>
+                <p>Award-winning thought leadership series featured by LinkedIn</p>
+            </div>
+            <div class="modal-body">
+                <div class="project-detail">
+                    <h4>🎯 Project Overview</h4>
+                    <p>Spearheaded a comprehensive LinkedIn thought leadership blog series at TD Bank Group, crafting compelling content for 10+ senior leaders ranging from AVP to EVP level. The campaign focused on promoting women in leadership while showcasing the bank's expertise and values.</p>
+                </div>
+                
+                <div class="project-stats">
+                    <strong>🏆 Key Achievement:</strong> Achieved 7% engagement rate through paid Thought Leadership Ads — 75% higher than the industry benchmark of ~4%
+                </div>
+                
+                <div class="project-detail">
+                    <h4>🚀 Impact & Recognition</h4>
+                    <p>The campaign was so successful that LinkedIn featured it as an industry case study for effectiveness, highlighting it as a best-practice example for B2B thought leadership marketing.</p>
+                </div>
+                
+                <div class="project-detail">
+                    <h4>🛠️ Tools & Methodology</h4>
+                    <ul>
+                        <li>Agile methodology using Kanban boards in Jira</li>
+                        <li>Cross-functional collaboration with stakeholders</li>
+                        <li>LinkedIn's native advertising platform</li>
+                        <li>Data analytics for performance optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="project-detail">
+                    <h4>💼 Strategic Value</h4>
+                    <p>Built trusted relationships with C-suite executives while aligning content strategies with leadership goals. The success demonstrated expertise in executive voice amplification and strategic employer branding.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="familytimeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('familytimeModal')">&times;</span>
+                <h2>🚀 FamilyTime SaaS Launch</h2>
+                <p>Complete product launch and marketing strategy execution</p>
+            </div>
+            <div class="modal-body">
+                <div class="project-detail">
+                    <h4>🎯 Project Overview</h4>
+                    <p>Successfully launched FamilyTime software-as-a-service (SaaS) product at Yumyapps, managing the complete go-to-market strategy from content creation to customer acquisition campaigns.</p>
+                </div>
+                
+                <div class="project-stats">
+                    <strong>📊 Key Results:</strong><br>
+                    • 60% increase in brand presence through strategic content curation<br>
+                    • 30% conversion rate for inactive users via email marketing<br>
+                    • Successful product launch at familytie.io
+                </div>
+                
+                <div class="project-detail">
+                    <h4>📝 Content & Marketing Strategy</h4>
+                    <ul>
+                        <li>Produced scripts for explanatory videos and supervised production</li>
+                        <li>Created high-quality press releases for feature updates and new releases</li>
+                        <li>Developed comprehensive email marketing campaigns</li>
+                        <li>Maintained strategic editorial calendar for targeted marketing efforts</li>
+                    </ul>
+                </div>
+                
+                <div class="project-detail">
+                    <h4>🎬 Creative Execution</h4>
+                    <p>Managed all content writers and ensured web content enhanced user experience (UX) while optimizing for search engines (SEO). Ran successful social media ad campaigns with meticulous attention to detail and consistent performance tracking.</p>
+                </div>
+                
+                <div class="project-detail">
+                    <h4>💡 Innovation Impact</h4>
+                    <p>Boosted product sales and customer outreach significantly through strategic promotions across website, blog posts, and social media platforms, all aligned with the latest industry trends.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="webmigrationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal('webmigrationModal')">&times;</span>
+                <h2>🌐 Faculty Web Migration Project</h2>
+                <p>Large-scale digital transformation initiative</p>
+            </div>
+            <div class="modal-body">
+                <div class="project-detail">
+                    <h4>🎯 Project Scope</h4>
+                    <p>Led a comprehensive faculty-wide web migration project at TMU (Ryerson University), serving as the primary resource for transitioning 12+ websites from legacy systems to modern, responsive templates.</p>
+                </div>
+                
+                <div class="project-stats">
+                    <strong>⚡ Project Scale:</strong> 12+ websites migrated from legacy to responsive templates with full WCAG 2.0 Level AA accessibility compliance
+                </div>
+                
+                <div class="project-detail">
+                    <h4>🛠️ Technical Implementation</h4>
+                    <ul>
+                        <li>Adobe Experience Manager (AEM) expertise for content management</li>
+                        <li>WCAG 2.0 Level AA accessibility standards compliance</li>
+                        <li>Responsive design implementation following Ryerson branding guidelines</li>
+                        <li>Created wireframes for web pages and landing pages</li>
+                    </ul>
+                </div>
+                
+                <div class="project-detail">
+                    <h4>📋 Strategic Planning</h4>
+                    <p>Created and implemented extensive migration project plans outlining clear goals and objectives. Worked closely with marketing and communication managers to develop content strategies based on analytics and key performance indicators (KPIs).</p>
+                </div>
+                
+                <div class="project-detail">
+                    <h4>🤝 Stakeholder Management</h4>
+                    <p>Collaborated with diverse groups of stakeholders throughout the Faculty of Community Services, providing comprehensive web support after site migrations. Created independent websites and microsites for individual schools according to their specific needs and requirements.</p>
+                </div>
+                
+                <div class="project-detail">
+                    <h4>🎓 Long-term Impact</h4>
+                    <p>Delivered modern, accessible, and user-friendly web experiences that improved student and faculty engagement while ensuring compliance with accessibility standards and institutional branding requirements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const responses = {
+            // Company-specific responses
+            'cibc': [
+                "Sameera would be an exceptional fit for CIBC! Currently thriving as a Digital Communications Specialist at TD Bank Group since March 2022, she brings insider knowledge of Canadian banking communications. She's spearheaded LinkedIn thought leadership campaigns for 10+ senior leaders (AVP to EVP level), achieving remarkable 7% engagement rates - 75% above the industry benchmark of 4%. One of her campaigns was so successful that LinkedIn featured it as an industry case study. Her proven track record of increasing organic engagement by 25% through strategic employer branding would directly benefit CIBC's talent acquisition efforts.",
+                "What makes Sameera uniquely valuable for CIBC is her deep technical expertise combined with proven results in banking. She's mastered Adobe Experience Manager (AEM), Jira workflows, and agile methodology - skills that integrate seamlessly with enterprise banking systems. Her commitment to accessibility (WCAG 2.0 Level AA certified) aligns perfectly with CIBC's inclusive banking mission. Plus, her multilingual capabilities in English, Urdu, and Punjabi would help CIBC connect authentically with Canada's diverse customer base. She's already built trusted relationships with C-suite executives and understands how to navigate complex stakeholder environments."
+            ],
+            'sunlife': [
+                "Sameera's background makes her particularly well-suited for Sun Life! Her comprehensive experience spans financial services, healthcare-adjacent tech (she successfully launched FamilyTime SaaS at Yumyapps), and educational institutions - giving her insights into diverse customer lifecycles that insurance companies serve. At TD Bank, she's managed complex multi-phase campaigns for major tech conferences like CollisionConf, Elevate, Grace Hopper, and BFUTR, demonstrating her ability to handle Sun Life's varied audience communications. Her expertise in accessible content creation is crucial for serving Sun Life's diverse demographic, and her volunteer leadership with Girl Guides Canada shows her commitment to community - aligning with Sun Life's mission.",
+                "For Sun Life, Sameera brings a powerful combination of customer conversion expertise and brand storytelling. At Yumyapps, she improved inactive user conversion rates to 30% through strategic email marketing campaigns - skills directly applicable to insurance customer retention and activation. Her creation of high-impact employer branding videos and sizzle reels at TD resulted in 25% increased organic engagement, which would strengthen Sun Life's talent acquisition in competitive insurance markets. Her collaborative approach using agile methodology and proven stakeholder management with diverse groups makes her ideal for Sun Life's cross-functional project environment."
+            ],
+            'bmo': [
+                "BMO would benefit tremendously from Sameera's proven expertise! Her success at TD Bank, where she created one of the banking industry's top-performing LinkedIn campaigns that became a LinkedIn case study, demonstrates her ability to deliver breakthrough results for major Canadian banks. Her comprehensive web migration experience at TMU (Ryerson University) - successfully migrating 12+ websites from legacy systems to responsive templates - shows she can handle BMO's large-scale digital transformation initiatives. Her 25% increase in organic engagement through employer branding directly translates to BMO's talent acquisition and brand positioning goals.",
+                "What makes Sameera ideal for BMO is her strategic mindset combined with hands-on technical execution. She's led faculty-wide web migration projects, managed content for major conferences (CollisionConf, Grace Hopper, BFUTR), and created visual assets using Adobe Photoshop - showing versatility across the entire digital ecosystem. Her experience launching FamilyTime SaaS product and achieving 60% brand presence increase demonstrates innovation thinking that would bring fresh perspectives to BMO. Her proven track record of building trusted relationships with senior stakeholders (AVP to EVP level) and her collaborative agile methodology approach make her ready to integrate seamlessly with BMO's executive team and project workflows."
+            ],
+            
+            // Skills and experience
+            'skills': [
+                "Sameera's skillset is exceptionally comprehensive! Her core competencies include Accessible Content Creation (WCAG 2.0 Level AA certified), Adobe Experience Manager (AEM) proficiency, and expert-level skills in Jira project management using agile methodology and Kanban boards. She's technically proficient in HTML, WordPress, Adobe Photoshop for visual asset creation, and Hootsuite for social media management. On the strategic side, she excels at Communication Strategy, Thought Leadership Strategy, Social Media Strategy, Email Marketing, Content Strategy, SEO, and Brand Development. Her content consistently achieves 7% engagement rates - 75% above the industry benchmark.",
+                "Her expertise really shines across three domains: technical implementation, strategic planning, and creative execution. She manages complex editorial calendars, conducts thorough product research, writes compelling blog content, and develops comprehensive website content strategies. Her multilingual capabilities in English, Urdu, and Punjabi expand her reach significantly. What's particularly impressive is her ability to seamlessly blend technical skills (AEM, HTML, WordPress) with creative abilities (visual design, compelling copywriting) while maintaining strict accessibility standards and delivering measurable results across banking, academia, tech startups, and non-profit sectors."
+            ],
+            
+            // Projects and achievements
+            'projects': [
+                "Sameera's project portfolio showcases exceptional results across multiple industries! At TD Bank Group (March 2022-Present), she spearheaded LinkedIn thought leadership campaigns for 10+ senior leaders, achieving remarkable 7% engagement rates through paid Thought Leadership Ads - significantly above the ~4% industry benchmark. One campaign became so successful that LinkedIn featured it as an industry case study for effectiveness. She executed social media strategies for major North American tech conferences including CollisionConf, Elevate, Grace Hopper, and BFUTR, boosting employer brand visibility across all event phases and resulting in 25% increased organic engagement.",
+                "Her technical project achievements are equally impressive. At TMU (July 2020-June 2021), she led a comprehensive faculty-wide web migration project, successfully migrating 12+ websites from legacy systems to responsive templates while ensuring WCAG 2.0 Level AA compliance. At Yumyapps (August 2014-November 2019), she successfully launched the FamilyTime SaaS product (familytie.io), increased brand presence by 60% through strategic content curation and social media campaigns, and improved inactive user conversion rates to 30% through targeted email marketing. She also produced high-quality press releases, supervised video production, and managed comprehensive editorial calendars based on targeted marketing efforts."
+            ],
+            
+            // Leadership an
